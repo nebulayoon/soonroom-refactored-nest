@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import {
@@ -15,6 +16,7 @@ import {
 @Entity('Room')
 export class Room {
   @PrimaryGeneratedColumn('increment')
+  @Index()
   id: number;
 
   @Column()
@@ -27,11 +29,11 @@ export class Room {
 
   @Column()
   @IsLatitude()
-  latitude: string;
+  latitude: number;
 
   @Column()
   @IsLongitude()
-  longitude: string;
+  longitude: number;
 
   @Column()
   @IsNumber()

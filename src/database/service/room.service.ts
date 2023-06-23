@@ -9,17 +9,17 @@ export class RoomService {
     @InjectRepository(Room) private roomRepository: Repository<Room>,
   ) {}
 
-  async create(user: Partial<Room>): Promise<Room> {
-    const result = this.roomRepository.create(user);
+  async create(room: Partial<Room>): Promise<Room> {
+    const result = this.roomRepository.create(room);
     return this.roomRepository.save(result);
   }
 
-  async findAll(): Promise<Room[]> {
-    return this.roomRepository.find();
+  async findAll(option?: object): Promise<Room[]> {
+    return this.roomRepository.find(option);
   }
 
-  async findOne(id: number): Promise<Room> {
-    return this.roomRepository.findOne({ where: { id } });
+  async findOne(id: number, option?: object): Promise<Room> {
+    return this.roomRepository.findOne({ where: { id }, ...option });
   }
 
   async update(id: number, updateUser: Partial<Room>): Promise<Room> {

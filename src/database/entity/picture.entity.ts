@@ -6,16 +6,11 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import {
-  IsString,
-  IsNumber,
-  IsLatitude,
-  IsLongitude,
-  IsBoolean,
-} from 'class-validator';
+import { IsString, IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 import { Room } from './room.entity';
 
-@Entity('Picture')
+@Entity({ name: 'picture' })
 export class Picture {
   @PrimaryGeneratedColumn('increment')
   @Index()
@@ -24,13 +19,16 @@ export class Picture {
   @ManyToOne(() => Room, (Room) => Room.id)
   @Column()
   @IsNumber()
+  @ApiProperty({ type: Number, description: '[ForeignKey] room id' })
   roomId: number;
 
   @Column()
   @IsString()
+  @ApiProperty({ type: String, description: '사진명' })
   name: string;
 
   @Column()
   @IsString()
+  @ApiProperty({ type: String, description: '사진 저장 위치' })
   path: string;
 }

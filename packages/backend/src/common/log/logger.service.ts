@@ -1,6 +1,6 @@
 import { forwardRef, Inject, Injectable, LoggerService } from '@nestjs/common';
-import { EntityService } from '@database/main.service';
-import { TimeService } from '@common/time/time.service';
+import { EntityService } from 'src/database/main.service';
+import { TimeService } from '../time/time.service';
 import * as winston from 'winston';
 
 @Injectable()

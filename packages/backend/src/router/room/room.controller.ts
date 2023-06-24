@@ -1,6 +1,5 @@
 import { Controller, Get, HttpStatus } from '@nestjs/common';
 import { RoomService } from './room.service';
-import { Room } from '@database/entity/room.entity';
 
 @Controller('room')
 export class RoomController {

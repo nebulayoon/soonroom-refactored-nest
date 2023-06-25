@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { EnvModule } from './router/env.module';
 
 @Module({
-  imports: [],
+  imports: [EnvModule],
   controllers: [],
   providers: [],
 })

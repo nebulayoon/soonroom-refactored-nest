@@ -16,6 +16,7 @@
     "build": "nest build",
     "start": "lerna run start",
     "start:backend": "lerna exec --scope backend -- npm run start",
+    "start:api": "lerna exec --scope api -- npm run start",
     "start:dev": "nest start --watch",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest"
@@ -24,6 +25,7 @@
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
+    "@types/amqplib": "^0.10.1",
     "@types/express": "^4.17.13",
     "@types/jest": "29.5.0",
     "@types/node": "18.15.11",
@@ -46,7 +48,10 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@nestjs-modules/ioredis": "^1.0.1",
+    "amqplib": "^0.10.3",
     "axios": "^1.4.0",
-    "got": "^13.0.0"
+    "got": "^13.0.0",
+    "ioredis": "^5.3.2"
   }
 }

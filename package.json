@@ -48,7 +48,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@nestjs-modules/ioredis": "^1.0.1",
     "amqplib": "^0.10.3",
     "axios": "^1.4.0",
     "got": "^13.0.0",

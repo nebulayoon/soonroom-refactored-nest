@@ -24,11 +24,21 @@ export class Picture {
 
   @Column()
   @IsString()
-  @ApiProperty({ type: String, description: '사진명' })
-  name: string;
+  @ApiProperty({ type: String, description: '원본명' })
+  originalName: string;
+
+  @Column()
+  @IsString()
+  @ApiProperty({ type: String, description: '파일명' })
+  fileName: string;
 
   @Column()
   @IsString()
   @ApiProperty({ type: String, description: '사진 저장 위치' })
   path: string;
+
+  @Column()
+  @IsString()
+  @ApiProperty({ type: String, description: '파일 타입' })
+  type: string;
 }

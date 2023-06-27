@@ -48,19 +48,20 @@ export class RabbitMQRepository {
     await this.connect(url);
   }
 
-  async publish(queueName: string, message: string): Promise<void> {
+  async publish(queueName: string, message: object): Promise<void> {
+    const messageStringify = JSON.stringify(message);
     if (!this.channel) {
       throw new Error('RabbitMQ channel not available');
     }
     await this.channel.assertQueue(queueName, { durable: true });
-    this.channel.sendToQueue(queueName, Buffer.from(message), {
+    this.channel.sendToQueue(queueName, Buffer.from(messageStringify), {
       persistent: true,
     });
   }
 
   async consume(
     queueName: string,
-    callback: (message: string) => void,
+    callback: (message: object) => void,
   ): Promise<void> {
     if (!this.channel) {
       throw new Error('RabbitMQ channel not available');
@@ -70,7 +71,7 @@ export class RabbitMQRepository {
     await this.channel.consume(queueName, (msg) => {
       if (msg) {
         try {
-          const message = msg.content.toString();
+          const message = JSON.parse(msg.content.toString());
           callback(message);
           this.channel?.ack(msg);
         } catch (err) {

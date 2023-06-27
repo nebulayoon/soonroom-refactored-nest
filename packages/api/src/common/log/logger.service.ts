@@ -1,5 +1,6 @@
 import { forwardRef, Inject, Injectable, LoggerService } from '@nestjs/common';
 import { TimeService } from '../time/time.service';
+import { RabbitMQRepository } from 'src/database/rabbitmq';
 import * as winston from 'winston';
 
 @Injectable()
@@ -28,20 +29,23 @@ export class CustomLoggerService implements LoggerService {
   }
 
   error(message: string, stack?: string, context?: any) {
-    const time = this.timeService.getTime(new Date());
+    const args = { message, stack, context };
+    this.logger.error(args);
 
-    this.logger.error({ message, stack, context });
+    const rabbitmq = new RabbitMQRepository();
+    try {
+      rabbitmq.connect('amqp://soonroom:1234@192.168.0.13:5672/');
+      rabbitmq.publish('logmq', args);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   log(message: string, context?: any) {
-    const time = this.timeService.getTime(new Date());
-
     this.logger.info({ message, context });
   }
 
   warn(message: string, context?: any) {
-    const time = this.timeService.getTime(new Date());
-
     this.logger.warn({ message, context });
   }
 

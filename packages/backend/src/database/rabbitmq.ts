@@ -1,6 +1,7 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import * as amqp from 'amqplib';
 
+@Injectable()
 export class RabbitMQRepository {
   private readonly RECONNECT_TIMEOUT_MS = 5000;
   private channel: amqp.Channel;
@@ -67,10 +68,10 @@ export class RabbitMQRepository {
         try {
           const message = JSON.parse(msg.content.toString());
           callback(message);
-          this.channel?.ack(msg);
+          this.channel.ack(msg);
         } catch (err) {
           console.error('RabbitMQ consume callback error:', err);
-          this.channel?.nack(msg);
+          this.channel.nack(msg);
         }
       }
     });

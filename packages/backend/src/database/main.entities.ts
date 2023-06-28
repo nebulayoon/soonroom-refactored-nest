@@ -1,4 +1,5 @@
-import { Room } from './entity/room.entity';
-import { Picture } from './entity/picture.entity';
+import { RoomEntity } from './entity/room.entity';
+import { PictureEntity } from './entity/picture.entity';
+import { SentryEntity } from './entity/sentry.entity';
 
-export const DBEntities = [Room, Picture];
+export const DBEntities = [RoomEntity, PictureEntity, SentryEntity];

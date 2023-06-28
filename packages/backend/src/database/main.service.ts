@@ -1,13 +1,16 @@
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
-import { RoomService } from './service/room.service';
-import { PictureService } from './service/picture.service';
+import { RoomEntityService } from './service/room.service';
+import { PictureEntityService } from './service/picture.service';
+import { SentryEntityService } from './service/sentry.service';
 
 @Injectable()
 export class EntityService {
   constructor(
-    @Inject(RoomService)
-    public readonly room: RoomService,
-    @Inject(PictureService)
-    public readonly picture: PictureService,
+    @Inject(RoomEntityService)
+    public readonly room: RoomEntityService,
+    @Inject(PictureEntityService)
+    public readonly picture: PictureEntityService,
+    @Inject(SentryEntityService)
+    public readonly sentry: SentryEntityService,
   ) {}
 }

@@ -15,7 +15,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'room' })
-export class Room {
+export class RoomEntity {
   @PrimaryGeneratedColumn('increment')
   @Index()
   id: number;

@@ -35,7 +35,10 @@ export class CustomLoggerService implements LoggerService {
     const rabbitmq = new RabbitMQRepository();
     try {
       rabbitmq.connect('amqp://soonroom:1234@192.168.0.13:5672/');
-      rabbitmq.publish('logmq', args);
+      rabbitmq.publish('logmq', {
+        serverName: 'api',
+        error: args,
+      });
     } catch (e) {
       console.error(e);
     }

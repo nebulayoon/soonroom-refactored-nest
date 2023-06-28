@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { EntityService } from '@database/main.service';
-import { Room } from '@database/entity/room.entity';
-import { Picture } from '@database/entity/picture.entity';
+import { RoomEntity } from '@database/entity/room.entity';
+import { PictureEntity } from '@database/entity/picture.entity';
 
 @Injectable()
 export class RoomService {
   constructor(private readonly entityService: EntityService) {}
 
-  async create(room: Partial<Room>) {
+  async create(room: Partial<RoomEntity>) {
     try {
       const result = await this.entityService.room.create(room);
       return result;
@@ -26,7 +26,7 @@ export class RoomService {
           fileName: row.filename,
           path: row.path,
           type: row.mimetype,
-        } as Picture;
+        } as PictureEntity;
       });
 
       return await this.entityService.picture.createPictures(pictures);

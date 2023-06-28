@@ -7,9 +7,10 @@ import { initLogMQ } from '@database/rabbitmq';
 
 async function bootstrap() {
   await initEnv();
-  await initLogMQ();
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  await initLogMQ();
 
   app.enableCors();
   app.disable('x-powerd-by');

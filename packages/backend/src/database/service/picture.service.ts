@@ -1,24 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Picture } from '../entity/picture.entity';
+import { PictureEntity } from '../entity/picture.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class PictureService {
+export class PictureEntityService {
   constructor(
-    @InjectRepository(Picture) private pictureRepository: Repository<Picture>,
+    @InjectRepository(PictureEntity)
+    private pictureRepository: Repository<PictureEntity>,
   ) {}
 
-  async create(picture: Partial<Picture>): Promise<Picture> {
+  async create(picture: Partial<PictureEntity>): Promise<PictureEntity> {
     const result = this.pictureRepository.create(picture);
     return this.pictureRepository.save(result);
   }
 
-  async createPictures(pictures: Picture[]) {
+  async createPictures(pictures: PictureEntity[]) {
     return this.pictureRepository.save(pictures);
   }
 
-  async findOne(id: number, option?: object): Promise<Picture> {
+  async findOne(id: number, option?: object): Promise<PictureEntity> {
     return this.pictureRepository.findOne({ where: { id }, ...option });
   }
 

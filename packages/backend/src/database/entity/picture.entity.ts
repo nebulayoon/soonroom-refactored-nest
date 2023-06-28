@@ -8,15 +8,15 @@ import {
 } from 'typeorm';
 import { IsString, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Room } from './room.entity';
+import { RoomEntity } from './room.entity';
 
 @Entity({ name: 'picture' })
-export class Picture {
+export class PictureEntity {
   @PrimaryGeneratedColumn('increment')
   @Index()
   id: number;
 
-  @ManyToOne(() => Room, (Room) => Room.id)
+  @ManyToOne(() => RoomEntity, (Room) => Room.id)
   @Column()
   @IsNumber()
   @ApiProperty({ type: Number, description: '[ForeignKey] room id' })

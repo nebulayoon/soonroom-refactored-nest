@@ -67,10 +67,10 @@ export class RabbitMQRepository {
         try {
           const message = JSON.parse(msg.content.toString());
           callback(message);
-          this.channel?.ack(msg);
+          this.channel.ack(msg);
         } catch (err) {
           console.error('RabbitMQ consume callback error:', err);
-          this.channel?.nack(msg);
+          this.channel.nack(msg);
         }
       }
     });

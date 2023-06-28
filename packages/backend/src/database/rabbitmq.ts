@@ -88,3 +88,9 @@ export class RabbitMQRepository {
     }
   }
 }
+
+export async function initLogMQ() {
+  const rabbitmq = new RabbitMQRepository();
+  await rabbitmq.connect('amqp://soonroom:1234@192.168.0.13:5672/');
+  await rabbitmq.consume('logmq', console.log);
+}

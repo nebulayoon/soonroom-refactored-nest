@@ -3,9 +3,12 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { initEnv } from '@common/env/env';
+import { initLogMQ } from '@database/rabbitmq';
 
 async function bootstrap() {
   await initEnv();
+  await initLogMQ();
+
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors();

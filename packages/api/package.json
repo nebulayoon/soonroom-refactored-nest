@@ -21,7 +21,14 @@
     "@nestjs/jwt": "^10.1.0",
     "@nestjs/platform-express": "^9.0.0",
     "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "helmet": "^7.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/csurf": "^1.11.2"
   }
 }

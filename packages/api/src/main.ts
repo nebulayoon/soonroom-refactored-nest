@@ -5,8 +5,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import * as csurf from 'csurf';
 import helmet from 'helmet';
+import { initEnv } from './common/env/env';
 
 async function bootstrap() {
+  await initEnv();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors();

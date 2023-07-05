@@ -8,7 +8,6 @@ import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 import { Request } from 'express';
 import { JwtDto } from 'src/router/user/dto/user.dto';
-import { LongWithoutOverridesClass } from 'typeorm/driver/mongodb/bson.typings';
 
 export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}

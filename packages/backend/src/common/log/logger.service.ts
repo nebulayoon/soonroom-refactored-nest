@@ -22,7 +22,9 @@ export class CustomLoggerService implements LoggerService {
             winston.format.printf((obj) => {
               return `${obj.level}: [${this.timeService.getTime(new Date())}] ${
                 obj.message
-              } | STACK: ${obj.stack} | CONTEXT: ${obj.context}`;
+              } ${obj.stack ? '| STACK:' + obj.stack : ''} ${
+                obj.context ? '| CONTEXT:' + obj.context : ''
+              }`;
             }),
           ),
         }),

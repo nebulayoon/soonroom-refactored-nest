@@ -7,7 +7,10 @@ import * as winston from 'winston';
 export class CustomLoggerService implements LoggerService {
   private readonly logger: winston.Logger;
 
-  constructor(private readonly timeService: TimeService) {
+  constructor(
+    private readonly timeService: TimeService,
+    private readonly rabbitMQService: RabbitMQRepository,
+  ) {
     this.logger = winston.createLogger({
       transports: [
         new winston.transports.Console({
@@ -18,7 +21,9 @@ export class CustomLoggerService implements LoggerService {
             winston.format.printf((obj) => {
               return `${obj.level}: [${this.timeService.getTime(new Date())}] ${
                 obj.message
-              } | STACK: ${obj.stack} | CONTEXT: ${obj.context}`;
+              } ${obj.stack ? '| STACK:' + obj.stack : ''} ${
+                obj.context ? '| CONTEXT:' + obj.context : ''
+              }`;
             }),
           ),
         }),
@@ -28,14 +33,12 @@ export class CustomLoggerService implements LoggerService {
     globalThis.logger = this;
   }
 
-  error(message: string, stack?: string, context?: any) {
+  async error(message: string, stack?: string, context?: any) {
     const args = { message, stack, context };
     this.logger.error(args);
 
-    const rabbitmq = new RabbitMQRepository();
     try {
-      rabbitmq.connect('amqp://soonroom:1234@192.168.0.13:5672/');
-      rabbitmq.publish('logmq', {
+      await this.rabbitMQService.publish('logmq', {
         serverName: 'api',
         error: args,
       });

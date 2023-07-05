@@ -1,6 +1,7 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import * as amqp from 'amqplib';
 
+@Injectable()
 export class RabbitMQRepository {
   private readonly RECONNECT_TIMEOUT_MS = 5000;
   private channel: amqp.Channel;

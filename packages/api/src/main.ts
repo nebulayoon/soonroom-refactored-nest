@@ -25,10 +25,10 @@ async function bootstrap() {
   app.use(helmet({ contentSecurityPolicy: false }));
 
   const config = new DocumentBuilder()
-    .setTitle('Unique Contents')
-    .setDescription('CardHunter API description')
+    .setTitle('API Server')
+    .setDescription('API Server API description')
     .setVersion('1.0')
-    .addTag('CardHunter')
+    .addTag('API')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from '@router/user.module';
+import { UserModule } from '@router/user/user.module';
 import { EntityServiceModule } from '@database/main.module';
 import { MysqlEntityModule } from '@database/mysql/mysql.module';
 import { MLoggerModule } from '@common/middleware/logger/logger.module';

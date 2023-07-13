@@ -17,6 +17,7 @@
     "start": "lerna run start",
     "start:backend": "lerna exec --scope backend -- npm run start",
     "start:api": "lerna exec --scope api -- npm run start",
+    "start:env-server": "node ./packages/env-server/dist/main.js",
     "start:dev": "nest start --watch",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest"

@@ -4,7 +4,7 @@ import axios from 'axios';
 export async function initEnv() {
   dotenv.config();
 
-  const { data } = await axios.get('http://192.168.0.13:3002/env');
+  const { data } = await axios.get('http://env-server:3002/env');
 
   const env: TypeEnv = {
     NODE_ENV: data.NODE_ENV,

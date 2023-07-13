@@ -12,7 +12,7 @@ export class RabbitMQInit implements OnModuleInit {
   async onModuleInit() {
     try {
       await this.rabbitMQRepository.connect(
-        'amqp://soonroom:1234@192.168.0.13:5672/',
+        'amqp://soonroom:1234@rabbitmq:5672/',
       );
       await this.rabbitMQRepository.consume(
         'logmq',

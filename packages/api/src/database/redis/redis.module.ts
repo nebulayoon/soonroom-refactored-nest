@@ -7,7 +7,7 @@ import { RedisRepository } from './redis';
   providers: [
     {
       provide: 'REDIS',
-      useValue: new Redis({ host: '192.168.0.13', port: 6379 }),
+      useValue: new Redis({ host: 'redis', port: 6379 }),
     },
     RedisRepository,
   ],

@@ -8,7 +8,7 @@ import { DBEntities } from '@database/main.entities';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'mysql',
-        host: '127.0.0.1',
+        host: 'mysql',
         port: 3306,
         username: 'soonroom',
         password: '1234',

@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  env-server:
+    extends:
+      file: docker-compose.base.yml
+      service: soonroom-base
+    command: node ./env-server/dist/main.js
+    ports:
+      - 3002:3002
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+  api:
+    extends:
+      file: docker-compose.base.yml
+      service: soonroom-base
+    command: node ./api/dist/main.js
+    ports:
+      - 3000:3000
+    depends_on:
+      - env-server
+      - mysql
+      - redis
+      - rabbitmq
+  backend:
+    extends:
+      file: docker-compose.base.yml
+      service: soonroom-base
+    command: node ./backend/dist/main.js
+    ports:
+      - 3001:3001
+    depends_on:
+      - env-server
+      - mysql
+      - redis
+      - rabbitmq
+
+  mysql:
+    image: mysql:8.0.33
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'qwer'
+      MYSQL_DATABASE: 'soonroom'
+      MYSQL_USER: 'soonroom'
+      MYSQL_PASSWORD: '1234'
+    ports:
+      - 3306:3306
+    volumes:
+      - soonroom_mysql_data:/var/lib/mysql
+  redis:
+    image: redis:7.0.12
+    restart: always
+    ports:
+      - "6379:6379"
+  rabbitmq:
+    image: rabbitmq:3.12.1
+    restart: always
+    ports:
+      - "5672:5672" # AMQP port
+      - "15672:15672" # web interface
+    environment:
+      RABBITMQ_DEFAULT_USER: soonroom
+      RABBITMQ_DEFAULT_PASS: 1234
+
+volumes:
+  mono-node-modules: null
+  soonroom_mysql_data:
+

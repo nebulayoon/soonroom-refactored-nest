@@ -8,4 +8,4 @@
 그 동안 발전된 개인 역량을 통해서 코드와 아키텍처 측면에서 리펙토링 진행을 목표로 만들어진 프로젝트 입니다.
 ```
 # Architecture
-<img width="1296" alt="아키텍처 구성도(가시성)" src="https://github.com/nebulayoon/soonroom-refactored-nest/assets/88534125/3fb7ecdf-2808-489b-8cb9-2d133a29c576">
+<img width="1481" alt="아키텍처 구성(도커)" src="https://github.com/nebulayoon/soonroom-refactored-nest/assets/88534125/21307355-c94c-4d11-87bf-4309627af627">

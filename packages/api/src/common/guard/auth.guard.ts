@@ -3,6 +3,7 @@ import {
   ExecutionContext,
   Inject,
   forwardRef,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
@@ -15,9 +16,13 @@ export class AuthGuard implements CanActivate {
     try {
       const request = ctx.switchToHttp().getRequest() as Request;
       const token = request.headers['access_token'] as string;
-      const { id, email } = this.jwtService.decode(token) as JwtDto;
+      if (!token) {
+        throw new UnauthorizedException();
+      }
+      const payload = this.jwtService.decode(token) as JwtDto;
+      request['user'] = payload;
 
-      return id !== undefined;
+      return payload.id !== undefined;
     } catch (e) {
       return false;
     }

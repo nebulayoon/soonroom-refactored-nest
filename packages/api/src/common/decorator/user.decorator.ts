@@ -5,8 +5,10 @@ import { JwtDto } from '@router/user/dto/user.dto';
 type TRequestWithUser = Request & { user: JwtDto };
 
 export const User = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
+  (data: string, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest() as TRequestWithUser;
-    return request.user;
+    const user = request.user;
+
+    return data ? user?.[data] : user;
   },
 );

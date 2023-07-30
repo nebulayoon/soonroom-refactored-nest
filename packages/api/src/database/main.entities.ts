@@ -1,3 +1,3 @@
-import { User } from './entity/user.entity';
+import { User } from '@libs/database/entity/user.entity';
 
 export const DBEntities = [User];

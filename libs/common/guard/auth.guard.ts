@@ -8,7 +8,6 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 import { Request } from 'express';
-import { JwtDto } from 'src/router/user/dto/user.dto';
 
 export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
@@ -19,7 +18,7 @@ export class AuthGuard implements CanActivate {
       if (!token) {
         throw new UnauthorizedException();
       }
-      const payload = this.jwtService.decode(token) as JwtDto;
+      const payload = this.jwtService.decode(token) as any; // refactoring 임시 설정 -> 따로 작성된 auth코드 옮길 예정
       request['user'] = payload;
 
       return payload.id !== undefined;

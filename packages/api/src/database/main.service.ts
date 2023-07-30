@@ -1,5 +1,5 @@
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
-import { UserService } from './service/user.service';
+import { UserService } from '@libs/database/service/user.service';
 
 @Injectable()
 export class EntityService {

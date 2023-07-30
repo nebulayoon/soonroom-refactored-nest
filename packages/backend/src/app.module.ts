@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { MysqlEntityModule } from '@database/mysql.module';
-import { EntityServiceModule } from '@database/main.module';
-import { LoggerModule } from '@common/log/logger.module';
-import { RoomModule } from '@router/room/room.module';
-import { SentryModule } from '@common/sentry/sentry.module';
-import { RabbitMQModule } from '@database/rabbitmq.module';
-import { MLoggerModule } from '@common/middleware/logger/logger.module';
+import { MysqlEntityModule } from '@libs/database/mysql/mysql.module';
+import { EntityServiceModule } from './database/main.module';
+import { LoggerModule } from '@libs/common/log/logger.module';
+import { RoomModule } from './router/room/room.module';
+import { SentryModule } from './common/sentry/sentry.module';
+import { RabbitMQModule } from '@libs/database/rabbitmq/rabbitmq.module';
+import { MLoggerModule } from '@libs/common/middleware/logger/logger.module';
 
 @Module({
   imports: [

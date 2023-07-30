@@ -1,5 +1,5 @@
 import { Body, Inject, Injectable, Req, Res } from '@nestjs/common';
-import { EntityService } from 'src/database/main.service';
+import { EntityService } from '../../database/main.service';
 import { JwtDto, LoginDto, RegisterDto } from './dto/user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';

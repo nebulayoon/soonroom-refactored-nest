@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SentryEntity } from '@database/entity/sentry.entity';
+import { SentryEntity } from '@libs/database/entity/sentry.entity';
 
 @Injectable()
 export class SentryEntityService {

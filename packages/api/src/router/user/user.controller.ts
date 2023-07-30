@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LoginDto, RegisterDto } from './dto/user.dto';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import { AuthGuard } from '@libs/common/guard/auth.guard';
 import { Response } from 'express';
 
 @Controller('user')

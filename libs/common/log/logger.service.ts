@@ -1,6 +1,6 @@
 import { forwardRef, Inject, Injectable, LoggerService } from '@nestjs/common';
 import { TimeService } from '../time/time.service';
-import { RabbitMQRepository } from '@database/rabbitmq/rabbitmq';
+import { RabbitMQRepository } from '@libs/database/rabbitmq/rabbitmq';
 import * as winston from 'winston';
 
 @Injectable()
